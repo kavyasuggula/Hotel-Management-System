@@ -25,12 +25,11 @@
 	</head>
 	<body>
         <%
-        response.setHeader("cache-control","no-cache,no-store,must-revalidate");
-		String usr = (String)session.getAttribute("usr");
+		response.setHeader("cache-control", "no-cache, no-store, must-revalidate");
+		String usr =  (String)session.getAttribute("usr");
 		String pwd = (String)session.getAttribute("pwd");
-		if(session.getAttribute("usr")==null){
+		if(session.getAttribute("usr") == null)
 			response.sendRedirect("staff.html");
-		}
 		int cust_id = Integer.parseInt(request.getParameter("customer_id"));	
         %>
         <%@ page import = "java.sql.*"%>
@@ -103,6 +102,9 @@
             function room_details(){
                 window.location = "room_details.jsp";
             }
+            function logout(){
+				window.location.replace("logout.jsp");
+			}
         </script>
 		<div class="container">
 			<ul id="gn-menu" class="gn-menu-main">
@@ -124,7 +126,7 @@
 								<li><a class="gn-icon gn-icon-help" onclick="room_details()">Room details</a></li>
 
 								<li>
-									<a class="gn-icon gn-icon-cog" href="staff.html">log out</a>
+									<a class="gn-icon gn-icon-cog" onclick="logout()">log out</a>
 								</li>
 							</ul>
 						</div><!-- /gn-scroller -->

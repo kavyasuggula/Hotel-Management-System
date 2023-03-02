@@ -25,14 +25,15 @@
 	<body>
         <%
         String fullname =null, phone=null;
-        response.setHeader("cache-control","no-cache,no-store,must-revalidate");
-		String usr = (String)session.getAttribute("usr");
+		response.setHeader("cache-control", "no-cache, no-store, must-revalidate");
+		String usr =  (String)session.getAttribute("usr");
 		String pwd = (String)session.getAttribute("pwd");
-		if(session.getAttribute("usr")==null){
+		if(session.getAttribute("usr") == null)
 			response.sendRedirect("customer.html");
-		}
         String name = request.getParameter("fname");
         String phone_number = request.getParameter("pno");
+		int room_type = Integer.parseInt(request.getParameter("room_type"));
+		String payment = (String)request.getParameter("payment_method");
         int id=-1;	       
         %>
         <%@ page import = "java.sql.*"%>
@@ -47,7 +48,7 @@
         {
                conn = DriverManager.getConnection(URL, USER, PASS);
                stmt = conn.createStatement();
-	 sql = String.format("insert into customer(name, phone_number) values('%s', '%s')",name, phone_number);
+	 sql = String.format("insert into customer(name, phone_number, room_type, payment_method) values('%s', '%s', '%d', '%s')",name, phone_number, room_type, payment);
 	 int i=stmt.executeUpdate(sql);
         }
         catch(Exception e){
@@ -77,6 +78,9 @@
             function status(){
                 window.location="check_status.jsp";
             }
+			function logout(){
+				window.location.replace("logout.jsp");
+			}
 		</script>
 		<div class="container">
 			<ul id="gn-menu" class="gn-menu-main">
@@ -91,7 +95,7 @@
 								<li><a class="gn-icon gn-icon-cog" onclick="cancel()">cancel reservation</a></li>
 								<li><a class="gn-icon gn-icon-help" onclick="status()">check status</a></li>
 								<li>
-									<a class="gn-icon gn-icon-archive" href="customer.html">log out</a>
+									<a class="gn-icon gn-icon-archive" onclick="logout()">log out</a>
 								</li>
 							</ul>
 						</div><!-- /gn-scroller -->
@@ -100,7 +104,8 @@
 				<li><a class="codrops-icon codrops-icon-prev" href="customer_options.jsp"><span>Home</span></a></li>			</ul>
 			<header>
 				<h1 style="margin-left: 25%;">Hotel newbie<span style="color: yellow;">A whole different world!</span></h1>
-               			 <%out.println("<h2 style=\"margin-left:25%; color:yellow;margin-top: 15px\">Your reservation id is '"+id+"'.</h2>");%>
+				
+               			 <%out.println("<div style=\"background-color: rgb(255, 246, 244);width: 400px;border: 10px solid hsl(0, 18%, 78%);padding-left: 50px;padding-top:50px;padding-bottom:50px;margin-top: 40px;margin-left:230px\"><h2 style=\"color:darkblue;font-family:constantia;\">Your reservation id is '"+id+"'.</h2></div>");%>
 			</header> 
 		</div><!-- /container -->
 		<script src="js/classie.js"></script>

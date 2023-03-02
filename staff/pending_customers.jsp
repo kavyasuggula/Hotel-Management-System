@@ -25,12 +25,11 @@
 	</head>
 	<body>  
         <%
-        response.setHeader("cache-control","no-cache,no-store,must-revalidate");
-		String usr = (String)session.getAttribute("usr");
+		response.setHeader("cache-control", "no-cache, no-store, must-revalidate");
+		String usr =  (String)session.getAttribute("usr");
 		String pwd = (String)session.getAttribute("pwd");
-		if(session.getAttribute("usr")==null){
+		if(session.getAttribute("usr") == null)
 			response.sendRedirect("staff.html");
-		}
         %>
         <%@ page import = "java.sql.*"%>
         <%
@@ -63,6 +62,8 @@
         String[] out_date = new String[count];
         int[] id = new int[count];
         int[] rno = new int[count];
+        int[] rtype = new int[count];
+        String[] payment = new String[count];
         int i=0;
             String sql1;
             try
@@ -77,6 +78,8 @@
                     in_date[i] = rs.getString("checkin_date");
                     out_date[i] = rs.getString("checkout_date");
                     rno[i] = rs.getInt("room_number");
+                    rtype[i] = rs.getInt("room_type");
+                    payment[i] = rs.getString("payment_method");
                     i+=1;
                 }
             }
@@ -104,6 +107,7 @@
                 <input type="hidden" name="phno" value='<%=pnum[i]%>'>
                 <input type="hidden" name="in_date" value='<%=in_date[i]%>'>
                 <input type="hidden" name="out_date" value='<%=out_date[i]%>'>
+                <input type="hidden" name="rtype" value='<%=rtype[i]%>'>
                 <input type="submit" value="assign">
             </form>
         </div>
@@ -128,6 +132,9 @@
             function room_details(){
                 window.location = "room_details.jsp";
             }
+            function logout(){
+				window.location.replace("logout.jsp");
+			}
         </script>
 		<div class="container">
 			<ul id="gn-menu" class="gn-menu-main">
@@ -149,7 +156,7 @@
 								<li><a class="gn-icon gn-icon-help" onclick="room_details()">Room details</a></li>
 
 								<li>
-									<a class="gn-icon gn-icon-cog" href="staff.html">log out</a>
+									<a class="gn-icon gn-icon-cog" onclick="logout()">log out</a>
 								</li>
 							</ul>
 						</div><!-- /gn-scroller -->

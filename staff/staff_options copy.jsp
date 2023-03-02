@@ -12,7 +12,6 @@
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
-        <link rel="stylesheet" href="css/customer_db.css">
 		<script src="js/modernizr.custom.js"></script>
 		<style>
 			body{
@@ -24,74 +23,13 @@
 		</style>
 	</head>
 	<body>
-        <%
-        response.setHeader("cache-control", "no-cache, no-store, must-revalidate");
+		<%
+		response.setHeader("cache-control", "no-cache, no-store, must-revalidate");
 		String usr =  (String)session.getAttribute("usr");
 		String pwd = (String)session.getAttribute("pwd");
 		if(session.getAttribute("usr") == null)
 			response.sendRedirect("staff.html");
-        %>
-        <%@ page import = "java.sql.*"%>
-        <%
-        int count=0;
-        String sql;
-        String URL = String.format("jdbc:mysql://localhost:3306/hotel_reservationdb");
-        String USER = "root";
-        String PASS = "Kavya@1911"; 
-        Connection conn = null;
-        Statement stmt = null;
-        conn = DriverManager.getConnection(URL, USER, PASS);
-        stmt = conn.createStatement();
-        try{
-            sql = "SELECT COUNT(room_number) count FROM room";
-            ResultSet rs = stmt.executeQuery(sql);
-            while(rs.next())
-            {
-                count =  rs.getInt("count");
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        %>
-        <div class="nwrapper" style="margin-top: 9%;">
-        <%
-        int[] rno = new int[count];
-        int[] rtype = new int[count];
-        int[] assigned = new int[count];
-        int[] assigned_status = new int[count];
-        int i=0;
-            String sql1;
-            try
-            {
-                sql1 = "select * from room";
-                ResultSet rs = stmt.executeQuery(sql1);
-                while(rs.next())
-                {
-                    rno[i] = rs.getInt("room_number");
-                    rtype[i] = rs.getInt("type");
-                    assigned[i] = rs.getInt("assigned");
-                    assigned_status[i] = rs.getInt("room_assigned_status");
-                    i+=1;
-                }
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-        %>
-        <%for(i=0;i<=count-1;i++){%>
-        <div class="section">
-        <div class="desc">
-            <div class="fill eich"></div>
-            <div class="name"><%=rno[i]%></div>
-            <div class="room" style="margin-top: 15px;">Type: <%=rtype[i]%></div>
-            <div class="checkin">status</div>
-            <div class="checkin_date"><%=assigned_status[i]%></div>
-            <div class="checkout">Assigned id</div>
-            <div class="checkout_date"><%=assigned[i]%></div>
-        </div>
-        </div>
-        <%}%>
+		%>
         <script>
             function assign(){
                 window.location = "pending_customers.jsp" ;
@@ -111,7 +49,7 @@
             function room_details(){
                 window.location = "room_details.jsp";
             }
-            function logout(){
+			function logout(){
 				window.location.replace("logout.jsp");
 			}
         </script>
@@ -141,12 +79,15 @@
 						</div><!-- /gn-scroller -->
 					</nav>
 				</li>
-				<li><a class="codrops-icon codrops-icon-prev" href="staff_options.jsp"><span>Home</span></a></li></ul> 
+				<li><a class="codrops-icon codrops-icon-prev" href="staff_options.jsp"><span>Home</span></a></li>			</ul>
+			<header>
+				<h1 style="margin-left: 	25%;">Hotel newbie<span style="color: yellow;">A whole different world!</span></h1>	
+			</header> 
 		</div><!-- /container -->
 		<script src="js/classie.js"></script>
 		<script src="js/gnmenu.js"></script>
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
-		</script>		
+		</script>	
 	</body>
 </html>

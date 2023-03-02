@@ -27,13 +27,11 @@
                    request.getRequestDispatcher("staff_options.jsp").forward(request, response);
                 }
                 else{
-	                out.println("<h1 style=\"text-align:center; background: red;\">Incorrect details</h1>");
-	                out.println("<a style=\"display:block; text-align: center; text-decoration:none;\" href='staff.html'>Go to home</a>");
+                    response.sendRedirect("staff.html");
                 }
             }
             else{
-	        out.println("<h1 style=\"text-align:center; background: red;\">Incorrect details</h1>");
-	        out.println("<a style=\"display:block; text-align: center; text-decoration:none;\" href='staff.html'>Go to home</a>");
+                response.sendRedirect("staff.html");
             }
         }
         catch(SQLException e){

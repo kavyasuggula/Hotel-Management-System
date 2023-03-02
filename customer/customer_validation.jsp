@@ -22,13 +22,12 @@
             }
             if(authentication_pwd!=null){
                 if(authentication_pwd.equals(paswd)){
-	                session.setAttribute("usr", usr_name);
-	                session.setAttribute("pwd", paswd);
-                    request.getRequestDispatcher("customer_options.jsp").forward(request, response);
+	            session.setAttribute("usr", usr_name);
+	            session.setAttribute("pwd", paswd);
+                request.getRequestDispatcher("customer_options.jsp").forward(request, response);
                 }
                 else{
-	        out.println("<h1 style=\"text-align:center; background: red;\">Incorrect password</h1>");
-	        out.println("<a style=\"display:block; text-align: center; text-decoration:none;\" href='customer.html'>Go to home</a>");
+                    response.sendRedirect("customer.html");
                 }
             }
             else{

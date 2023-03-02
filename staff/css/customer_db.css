@@ -35,9 +35,9 @@ body{
 .phone { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; right: 50%; font-size: 20px; height: 100px; line-height: 50px; text-align: right; }
 .number { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; left: 50%; font-size: 20px; height: 100px; line-height: 50px; text-align: center; }
 .checkin { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; right: 50%; font-size: 20px; height: 70px; line-height: 30px; text-align: left; }
-.checkin_date { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; left: 50%; font-size: 20px; height: 70px; line-height: 30px; text-align: right; }
+.checkin_date { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; left: 57%; font-size: 20px; height: 70px; line-height: 30px; text-align: center; }
 .checkout { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; right: 50%; font-size: 20px; height: 40px; line-height: 10px; text-align: left; }
-.checkout_date { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; left: 50%; font-size: 20px; height: 40px; line-height: 10px; text-align: right; }
+.checkout_date { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; left: 57%; font-size: 20px; height: 40px; line-height: 10px; text-align: center; }
 .myform { transition: 0.5s all; opacity: 0; font-family: 'Overwatch'; position: absolute; bottom: 37px; width: 88px; left: 40%; font-size: 20px; height: 20px; line-height: 0px; text-align: center; }
 .rank { transition: 0.5s all; opacity: 0; position: absolute; bottom: 26px; right: calc(50% - 33px); width: 68px; font-size: 20px; height: 68px; line-height: 40px; }
 .heros { transition: 0.5s all; opacity: 0; position: absolute; bottom: 20px; width: 100%; left: 0; height: 60px; line-height: 60px; }
